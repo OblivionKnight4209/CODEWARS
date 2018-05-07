@@ -1,32 +1,9 @@
-function formatWords(array) {
-    let newarray = [];
 
-    if (array === [] || array === null || array === undefined) {
-        return "";
-    }
+'use strict';
+function formatWords(words) {
+    if (!words) { return false }
+    return words.filter(word => word.length > 0).join().replace(/,([^,]*)$/, ' and $1').replace(/,/g, ', ')
+}
 
-    for (let i = 0; i < array.length; i++) {
-        if (array[i] !== '') {
-            newarray.push(array[i])
-        }
-    }
-
-    if (newarray === []) {
-        return "";
-    }
-
-    if (newarray.length === 2) {
-        return `${newarray[0]} and ${newarray[1]}`;
-    }
-
-    if (newarray.length > 2) {
-        let longArray = [];
-        for (let j = 0; j < newarray.length; j++) {
-            longArray.push(`${newarray[j]}`);
-        }
-        let lastWord = longArray.pop();
-        return `${longArray.join(', ')} and ${lastWord}`;
-    }
-
-    return newarray;
+console.log(formatWords(['ninja', 'samurai', 'ronin'])); 
 }
